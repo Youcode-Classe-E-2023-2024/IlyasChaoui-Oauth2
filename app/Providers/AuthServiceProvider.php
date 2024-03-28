@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
+use App\Models\OAuthAccessToken;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,9 +24,10 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any authentication / authorization services.
      */
-    public function boot(): void
+    public function boot()
     {
         $this->registerPolicies();
-        Passport::loadKeysFrom(storage_path());
+
+        Passport::useTokenModel(OAuthAccessToken::class);
     }
 }
