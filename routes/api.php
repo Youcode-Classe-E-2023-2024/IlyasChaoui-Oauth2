@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Api\AuthController;
 
 /*
@@ -29,3 +30,12 @@ Route::namespace('Api')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
     });
 });
+
+/*
+|--------------------------------------------------------------------------
+| CRUD roles
+|--------------------------------------------------------------------------
+*/
+Route::get('/roles', [RoleController::class, 'showRoles']);
+Route::post('/roles', [roleController::class, 'addRole']);
+Route::delete('/roles/{id}', [roleController::class, 'deleteRole']);
